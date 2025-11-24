@@ -1,5 +1,9 @@
 # Finger Chooser
 
+<div align="center">
+  <img src="public/logo.png" alt="Finger Chooser logo" width="240" />
+</div>
+
 Finger Chooser is a playful multi-touch selector built with Nuxt 4. Drop several fingers on the same screen, watch a neon countdown, and let the app randomly highlight a single winner. It ships as a Progressive Web App so it can be installed and used offline on phones and tablets.
 
 ## Features
