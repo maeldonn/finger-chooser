@@ -2,16 +2,15 @@
 export default defineNuxtConfig({
   srcDir: "app",
   compatibilityDate: "2025-07-15",
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   css: ["~/assets/css/main.css"],
   modules: ["@nuxtjs/tailwindcss", "@vite-pwa/nuxt"],
   pwa: {
     registerType: "autoUpdate",
     manifest: {
       name: "Finger Chooser Game",
-      short_name: "Chooser",
+      short_name: "Finger Chooser",
       description: "Finger Chooser Game",
-      start_url: "/",
       display: "standalone",
       theme_color: "#000000",
       background_color: "#000000",
@@ -58,7 +57,7 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        { rel: "manifest", href: "/manifest.json" },
+        { rel: "manifest", href: "/manifest.webmanifest" },
         { rel: "apple-touch-icon", href: "/pwa-192x192.png" },
       ],
     },
