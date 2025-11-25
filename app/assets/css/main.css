@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Space Grotesk', 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    'Space Grotesk',
+    'SF Pro Display',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
 }
 
 body {

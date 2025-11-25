@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 export default <Partial<Config>>{
   content: [
@@ -6,13 +6,20 @@ export default <Partial<Config>>{
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './app.vue',
-    './app/**/*.{vue,js,ts}'
+    './app/**/*.{vue,js,ts}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'SF Pro Display', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
-      }
-    }
-  }
-}
+        sans: [
+          'Space Grotesk',
+          'SF Pro Display',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'sans-serif',
+        ],
+      },
+    },
+  },
+};

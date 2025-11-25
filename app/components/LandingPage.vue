@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import QrcodeVue from "qrcode.vue";
-import { Link2, MousePointer2 } from "lucide-vue-next";
-import logo from "~/assets/icon/icon.svg?url";
+import { ref, onMounted } from 'vue';
+import QrcodeVue from 'qrcode.vue';
+import { Link2, MousePointer2 } from 'lucide-vue-next';
+import logo from '~/assets/icon/icon.svg?url';
 
 const emit = defineEmits<{
-  (e: "force-start"): void;
+  (e: 'force-start'): void;
 }>();
 
-const currentUrl = ref("https://maeldonn.github.io/finger-chooser/");
+const currentUrl = ref('https://maeldonn.github.io/finger-chooser/');
 
 onMounted(() => {
   currentUrl.value = window.location.href;
 });
 
 const handleForceStart = () => {
-  emit("force-start");
+  emit('force-start');
 };
 </script>
 
@@ -32,8 +32,7 @@ const handleForceStart = () => {
           Finger Chooser
         </h1>
         <p class="text-gray-400 mt-0">
-          The ultimate tool for settling disputes, picking players, or paying
-          bills.
+          The ultimate tool for settling disputes, picking players, or paying bills.
         </p>
       </div>
 
@@ -47,15 +46,12 @@ const handleForceStart = () => {
         </div>
 
         <div class="space-y-2">
-          <h2
-            class="text-xl font-semibold flex items-center justify-center gap-2"
-          >
+          <h2 class="text-xl font-semibold flex items-center justify-center gap-2">
             <Link2 class="w-5 h-5" />
             Scan to Play
           </h2>
           <p class="text-sm text-gray-500">
-            This game requires a multi-touch screen. Open this page on your
-            phone.
+            This game requires a multi-touch screen. Open this page on your phone.
           </p>
         </div>
       </div>

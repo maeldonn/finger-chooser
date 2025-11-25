@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
-import LandingPage from '~/components/LandingPage.vue'
-import FingerGame from '~/components/FingerGame.vue'
+import { ref, onMounted, computed } from 'vue';
+import LandingPage from '~/components/LandingPage.vue';
+import FingerGame from '~/components/FingerGame.vue';
 
-const isTouchDevice = ref(false)
-const forced = ref(false)
+const isTouchDevice = ref(false);
+const forced = ref(false);
 
 onMounted(() => {
-  const hasTouch = navigator.maxTouchPoints > 0 || 'ontouchstart' in window
-  isTouchDevice.value = hasTouch
-})
+  const hasTouch = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+  isTouchDevice.value = hasTouch;
+});
 
-const shouldShowGame = computed(() => isTouchDevice.value || forced.value)
+const shouldShowGame = computed(() => isTouchDevice.value || forced.value);
 const handleForceStart = () => {
-  forced.value = true
-}
+  forced.value = true;
+};
 </script>
 
 <template>
