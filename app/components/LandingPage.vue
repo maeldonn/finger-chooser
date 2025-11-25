@@ -21,11 +21,18 @@ const handleForceStart = () => {
 <template>
   <div class="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center p-6 text-center">
     <div class="max-w-md w-full space-y-8">
-      <div class="space-y-2">
-        <h1 class="text-4xl font-bold tracking-tighter bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+      <div class="flex flex-col items-center text-center gap-3">
+        <img
+          src="/logo.svg"
+          alt="Finger Chooser logo"
+          class="mx-auto h-16 w-16"
+        />
+        <h1
+          class="text-4xl font-bold tracking-tighter leading-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+        >
           Finger Chooser
         </h1>
-        <p class="text-gray-400">
+        <p class="text-gray-400 mt-0">
           The ultimate tool for settling disputes, picking players, or paying bills.
         </p>
       </div>

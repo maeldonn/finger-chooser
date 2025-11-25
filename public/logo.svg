@@ -1,0 +1,32 @@
+<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Finger Chooser logo">
+  <defs>
+    <linearGradient id="fc-logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+    <filter id="fc-logo-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <circle
+    cx="64"
+    cy="64"
+    r="42"
+    fill="none"
+    stroke="url(#fc-logo-gradient)"
+    stroke-width="8"
+    stroke-linecap="round"
+    filter="url(#fc-logo-glow)"
+  />
+  <circle
+    cx="64"
+    cy="64"
+    r="24"
+    fill="url(#fc-logo-gradient)"
+    fill-opacity="0.6"
+  />
+</svg>
