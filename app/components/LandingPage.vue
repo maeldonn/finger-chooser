@@ -2,12 +2,13 @@
 import { ref, onMounted } from "vue";
 import QrcodeVue from "qrcode.vue";
 import { Link2, MousePointer2 } from "lucide-vue-next";
+import logo from "~/assets/icon/icon.svg?url";
 
 const emit = defineEmits<{
   (e: "force-start"): void;
 }>();
 
-const currentUrl = ref("https://finger-chooser.app");
+const currentUrl = ref("https://maeldonn.github.io/finger-chooser/");
 
 onMounted(() => {
   currentUrl.value = window.location.href;
@@ -24,11 +25,7 @@ const handleForceStart = () => {
   >
     <div class="max-w-md w-full space-y-8">
       <div class="flex flex-col items-center text-center gap-3">
-        <img
-          src="/icon.svg"
-          alt="Finger Chooser logo"
-          class="mx-auto h-16 w-16"
-        />
+        <img :src="logo" alt="Finger Chooser logo" class="mx-auto h-16 w-16" />
         <h1
           class="text-4xl font-bold tracking-tighter leading-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
         >
