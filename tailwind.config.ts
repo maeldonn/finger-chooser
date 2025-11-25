@@ -1,13 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 export default <Partial<Config>>{
-  content: [
-    './components/**/*.{vue,js,ts}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './app.vue',
-    './app/**/*.{vue,js,ts}',
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {

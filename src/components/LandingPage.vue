@@ -9,9 +9,11 @@ const emit = defineEmits<{
 }>();
 
 const currentUrl = ref('https://maeldonn.github.io/finger-chooser/');
+const isMounted = ref(false);
 
 onMounted(() => {
   currentUrl.value = window.location.href;
+  isMounted.value = true;
 });
 
 const handleForceStart = () => {
@@ -39,10 +41,8 @@ const handleForceStart = () => {
       <div
         class="bg-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-800 flex flex-col items-center space-y-6"
       >
-        <div class="bg-white p-4 rounded-xl">
-          <ClientOnly>
-            <QrcodeVue :value="currentUrl" :size="200" />
-          </ClientOnly>
+        <div class="bg-white p-4 rounded-xl" v-if="isMounted">
+          <QrcodeVue :value="currentUrl" :size="200" />
         </div>
 
         <div class="space-y-2">
