@@ -8,7 +8,7 @@ export default defineNuxtPlugin(() => {
   useRegisterSW({
     immediate: true,
     onRegisteredSW(swUrl) {
-      if (process.dev) {
+      if (import.meta.dev) {
         console.info('Service worker registered:', swUrl)
       }
     },

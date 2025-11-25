@@ -1,47 +1,50 @@
-let cleanupPromise: Promise<void> | null = null
+let cleanupPromise: Promise<void> | null = null;
 
 const unregisterServiceWorkers = async () => {
-  if (!('serviceWorker' in navigator)) {
-    return
+  if (!("serviceWorker" in navigator)) {
+    return;
   }
 
-  const registrations = await navigator.serviceWorker.getRegistrations()
+  const registrations = await navigator.serviceWorker.getRegistrations();
   await Promise.all(
     registrations.map(async (registration) => {
       try {
-        await registration.unregister()
+        await registration.unregister();
       } catch {
         // ignore failures – we only need best-effort cleanup
       }
     })
-  )
-}
+  );
+};
 
 const clearLegacyCaches = async () => {
-  if (!('caches' in window)) {
-    return
+  if (!("caches" in window)) {
+    return;
   }
 
-  const cacheNames = await caches.keys()
+  const cacheNames = await caches.keys();
   await Promise.all(
     cacheNames
       .filter((name) => /finger|chooser|vite|workbox/i.test(name))
       .map(async (name) => {
         try {
-          await caches.delete(name)
+          await caches.delete(name);
         } catch {
           // cache deletion is best-effort, ignore errors
         }
       })
-  )
-}
+  );
+};
 
 export default defineNuxtPlugin(() => {
-  if (cleanupPromise || !process.client) {
-    return
+  if (cleanupPromise) {
+    return;
   }
 
-  cleanupPromise = Promise.allSettled([unregisterServiceWorkers(), clearLegacyCaches()]).then(() => {
-    cleanupPromise = null
-  })
-})
+  cleanupPromise = Promise.allSettled([
+    unregisterServiceWorkers(),
+    clearLegacyCaches(),
+  ]).then(() => {
+    cleanupPromise = null;
+  });
+});

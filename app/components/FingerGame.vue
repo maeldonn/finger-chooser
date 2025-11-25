@@ -11,8 +11,10 @@ const status = ref<GameStatus>('waiting')
 const countdown = ref<number | null>(null)
 const winnerId = ref<number | null>(null)
 
-const pointerCount = computed(() => pointers.value.size)
+const pointerCount = ref(0)
 const fingerList = computed(() => Array.from(pointers.value.values()))
+const pendingMoves = new Map<number, { x: number; y: number }>()
+let scheduledMoveFrame: number | null = null
 
 const resetGame = () => {
   status.value = 'waiting'
@@ -22,14 +24,19 @@ const resetGame = () => {
 
 const updatePointers = (updater: (map: Map<number, Finger>) => void) => {
   const next = new Map(pointers.value)
+  const previousSize = pointers.value.size
   updater(next)
   pointers.value = next
+  if (next.size !== previousSize) {
+    pointerCount.value = next.size
+  }
 }
 
 const removePointer = (id: number) => {
   updatePointers((map) => {
     map.delete(id)
   })
+  pendingMoves.delete(id)
 }
 
 const handlePointerDown = (event: PointerEvent) => {
@@ -52,11 +59,25 @@ const handlePointerMove = (event: PointerEvent) => {
   event.preventDefault()
   if (!pointers.value.has(event.pointerId)) return
 
-  updatePointers((map) => {
-    const finger = map.get(event.pointerId)
-    if (!finger) return
-    map.set(event.pointerId, { ...finger, x: event.clientX, y: event.clientY })
-  })
+  pendingMoves.set(event.pointerId, { x: event.clientX, y: event.clientY })
+  if (scheduledMoveFrame === null) {
+    scheduledMoveFrame = requestAnimationFrame(() => {
+      scheduledMoveFrame = null
+      if (pendingMoves.size === 0) {
+        return
+      }
+      const next = new Map(pointers.value)
+      pendingMoves.forEach((position, id) => {
+        const finger = next.get(id)
+        if (!finger) {
+          return
+        }
+        next.set(id, { ...finger, x: position.x, y: position.y })
+      })
+      pendingMoves.clear()
+      pointers.value = next
+    })
+  }
 }
 
 const handlePointerUp = (event: PointerEvent) => {
@@ -159,17 +180,12 @@ watch(
         Need at least one more...
       </p>
 
-      <div v-else-if="status === 'countdown' && countdown !== null" class="flex flex-col items-center gap-4">
-        <div class="relative flex items-center justify-center">
-          <div class="absolute -inset-10 bg-gradient-to-r from-emerald-400/40 via-amber-300/30 to-fuchsia-500/40 blur-3xl opacity-70 animate-pulse" />
-          <div class="countdown-number relative z-10 tabular-nums">
-            {{ countdown }}
-          </div>
-        </div>
-        <p class="text-xs tracking-[0.6em] uppercase text-emerald-100/80">
-          Ready
-        </p>
-      </div>
+      <p
+        v-else-if="status === 'countdown' && countdown !== null"
+        class="text-gray-500 font-medium animate-pulse text-lg"
+      >
+        Ready in {{ countdown }}...
+      </p>
     </div>
 
     <FingerCursor
