@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig(({ command }) => ({
-  base: command === 'serve' ? '/' : '/finger-chooser/',
+  base: '/',
   plugins: [vue()],
   resolve: {
     alias: {
