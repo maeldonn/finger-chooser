@@ -1,29 +1,31 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import QrcodeVue from 'qrcode.vue'
-import { Link2, MousePointer2 } from 'lucide-vue-next'
+import { ref, onMounted } from "vue";
+import QrcodeVue from "qrcode.vue";
+import { Link2, MousePointer2 } from "lucide-vue-next";
 
 const emit = defineEmits<{
-  (e: 'force-start'): void
-}>()
+  (e: "force-start"): void;
+}>();
 
-const currentUrl = ref('https://finger-chooser.app')
+const currentUrl = ref("https://finger-chooser.app");
 
 onMounted(() => {
-  currentUrl.value = window.location.href
-})
+  currentUrl.value = window.location.href;
+});
 
 const handleForceStart = () => {
-  emit('force-start')
-}
+  emit("force-start");
+};
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center p-6 text-center">
+  <div
+    class="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center p-6 text-center"
+  >
     <div class="max-w-md w-full space-y-8">
       <div class="flex flex-col items-center text-center gap-3">
         <img
-          src="/logo.svg"
+          src="/icon.svg"
           alt="Finger Chooser logo"
           class="mx-auto h-16 w-16"
         />
@@ -33,11 +35,14 @@ const handleForceStart = () => {
           Finger Chooser
         </h1>
         <p class="text-gray-400 mt-0">
-          The ultimate tool for settling disputes, picking players, or paying bills.
+          The ultimate tool for settling disputes, picking players, or paying
+          bills.
         </p>
       </div>
 
-      <div class="bg-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-800 flex flex-col items-center space-y-6">
+      <div
+        class="bg-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-800 flex flex-col items-center space-y-6"
+      >
         <div class="bg-white p-4 rounded-xl">
           <ClientOnly>
             <QrcodeVue :value="currentUrl" :size="200" />
@@ -45,12 +50,15 @@ const handleForceStart = () => {
         </div>
 
         <div class="space-y-2">
-          <h2 class="text-xl font-semibold flex items-center justify-center gap-2">
+          <h2
+            class="text-xl font-semibold flex items-center justify-center gap-2"
+          >
             <Link2 class="w-5 h-5" />
             Scan to Play
           </h2>
           <p class="text-sm text-gray-500">
-            This game requires a multi-touch screen. Open this page on your phone.
+            This game requires a multi-touch screen. Open this page on your
+            phone.
           </p>
         </div>
       </div>
