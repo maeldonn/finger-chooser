@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="src/assets/icon/icon.svg" alt="Finger Chooser logo" width="240" />
+  <img src="public/favicon.svg" alt="Finger Chooser logo" width="240" />
 </div>
 
 # Finger Chooser
