@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { qrcode } from 'vite-plugin-qrcode';
 import vue from '@vitejs/plugin-vue';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -11,6 +12,7 @@ export default defineConfig({
   base: '/',
   plugins: [
     vue(),
+    qrcode(),
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {

@@ -4,7 +4,7 @@ import FingerCursor from '~/components/FingerCursor.vue';
 import type { Finger, GameStatus } from '~/types/finger';
 import { getUniqueFingerColor } from '~/utils/colors';
 
-const COUNTDOWN_SECONDS = 3;
+const COUNTDOWN_SECONDS = 2;
 
 const pointers = ref<Map<number, Finger>>(new Map());
 const status = ref<GameStatus>('waiting');
