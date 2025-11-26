@@ -10,12 +10,11 @@ const isTouchDevice = ref(hasTouch);
 const forced = ref(false);
 
 const shouldShowGame = computed(() => isTouchDevice.value || forced.value);
-const handleForceStart = () => (forced.value = true);
 </script>
 
 <template>
   <div>
     <FingerGame v-if="shouldShowGame" />
-    <LandingPage v-else @force-start="handleForceStart" />
+    <LandingPage v-else @force-start="forced = true" />
   </div>
 </template>
