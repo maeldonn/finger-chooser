@@ -16,6 +16,12 @@ const fingerList = computed(() => Array.from(pointers.value.values()));
 const pendingMoves = new Map<number, { x: number; y: number }>();
 let scheduledMoveFrame: number | null = null;
 
+const triggerHapticFeedback = () => {
+  if ('vibrate' in window.navigator) {
+    window.navigator.vibrate([80, 40, 120]);
+  }
+};
+
 const resetGame = () => {
   status.value = 'waiting';
   countdown.value = null;
@@ -137,6 +143,7 @@ watch(
             const randomIdx = Math.floor(Math.random() * pointerIds.length);
             winnerId.value = pointerIds[randomIdx];
             status.value = 'finished';
+            triggerHapticFeedback();
           }
           countdown.value = null;
         } else {
